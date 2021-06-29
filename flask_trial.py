@@ -57,27 +57,27 @@ def predict():
             dataset=pd.read_csv("data.csv")
             dataset=dataset.drop('Date',axis=1)
             dataset=dataset.drop('News',axis=1)
-            print(dataset.head(3))
+            #print(dataset.head(3))
             row=[open_price,close_price]
             row.extend(sentiment)
             dataset.loc[len(dataset)] = row
-            print(dataset.tail())
+            #print(dataset.tail())
             cols=['Open','Close','polarity','subjectivity','compound','neutral','positive','negative']
             scaler=MinMaxScaler(feature_range=(0,1))
             scaled_data=scaler.fit_transform(dataset[cols])
-            print(scaled_data[-1])
-            print(scaled_data[-2])
+            #print(scaled_data[-1])
+            #print(scaled_data[-2])
             data_in=[]
             #for i in range(len(scaled_data)-61, len(scaled_data)-1):
-            data_in.append(scaled_data[len(scaled_data)-61:len(scaled_data)-1, 0:])
+            data_in.append(scaled_data[len(scaled_data)-60:len(scaled_data), 0:])
             data_in=np.array(data_in)
-            print(data_in.shape)
+            #print(data_in.shape)
 
             predictions=model.predict(data_in)
-            print(predictions)
+            #print(predictions)
             predictions = scaler.inverse_transform(predictions)
             final_close=round(predictions[0][1],4)
-            print(final_close)
+            #print(final_close)
             if sentiment[0] > 0:
 	            sentiment_text = "Positive"
             elif sentiment[0] < 0 :
