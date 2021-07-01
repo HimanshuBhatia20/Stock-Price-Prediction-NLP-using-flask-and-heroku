@@ -1,4 +1,4 @@
-# Stock Market Price Prediction Using News Headlines
+# Stock Market Price Trend Prediction Using News Headlines
 ## Natural Language Processing 
 
 Wearking link:
